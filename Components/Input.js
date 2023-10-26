@@ -15,12 +15,14 @@ class Input extends React.Component {
         this.setState({transitName : text})
     }
     findRoute = (transit) => {
+        console.log(transit)
         if(transit.transit.toLowerCase() === this.state.transitName.toLowerCase())
             return transit;
     }
     printRoute = () => {
         const route = routes.filter(this.findRoute);
         route.forEach(async r => {
+            // console.log("t, ", r);
             let api = "%27%27"
             let copy = api.split("%");
             copy[1] = copy[1] + r.route;

@@ -46,6 +46,7 @@ class HereMap extends Component {
 
   async getRestaurantIds(id) {
 
+    // console.log(id)
     const url = `https://publictransithub.com/api/restaurants/getrestaurants?stop_id=${id}`;
     const restaurantData = await fetch(url);
     const restaurantJson = await restaurantData.json();
@@ -86,15 +87,18 @@ class HereMap extends Component {
 
 
   handleFindRoute(StopData){
+    // console.log(StopData[0])
     this.setState( () => ({
       routeStops: [...StopData]
     }))
-    this.buildCoordinates();
+    this.buildCoordinates(StopData);
   }
 
-  buildCoordinates() {
+  buildCoordinates(routeStops) {
+    console.log("test", routeStops)
     let allCoordinates = [];
-    this.state.routeStops.forEach(stop => {
+    routeStops.forEach(stop => {
+
       let coordinate = {};
       stop.forEach((currStop, curIndex) => {
 
@@ -108,7 +112,6 @@ class HereMap extends Component {
       })
 
     allCoordinates.push(coordinate);
-
 
     })
 
@@ -279,8 +282,8 @@ class HereMap extends Component {
             longitude: this.props.origin.longitude
           }}  pinColor="orange"/>
           {
-          this.state.listofCoordinates.map( busCoordinate => {
-                  return <Marker onPress ={()=>this.showAttraction(busCoordinate.id)} id = {busCoordinate.id} coordinate = {busCoordinate}  pinColor="orange"/>
+          this.state.listofCoordinates.map( (busCoordinate, index) => {
+                  return <Marker onPress ={()=>this.showAttraction(busCoordinate.id)} id = {busCoordinate.id} coordinate = {busCoordinate}  pinColor="orange" key={index}/>
                   //
           })
           }

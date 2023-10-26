@@ -11,7 +11,8 @@ import { originPropType, navigationPropType } from '../commonPropTypes';
 
 // import SearchBar from '../components/SearchBar';
 
-import HereMap from '../components/HereMap';
+// import HereMap from '../components/HereMap';
+import HereMap from "../Components/HereMap"
 //import Logo from '../components/Logo';
 //import { COLLAPSED, EXPANDED } from '../components/UpwardsExpandingView';
 
